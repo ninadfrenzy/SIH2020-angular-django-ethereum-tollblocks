@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face{
+  font-family: 'product-sans';
+  src: url('./assets/fonts/product-sans.ttf');
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: 'product-sans', "Helvetica Neue", sans-serif; }
+

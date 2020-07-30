@@ -1,0 +1,88 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item">
+      <img src="../../../assets/img/light-logo.png" id="logo" />
+    </a>
+
+    <a
+      role="button"
+      class="navbar-burger burger"
+      id="navbar-burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbarBasicExample"
+      (click)="toggleHamburgerMenu()"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbar-menu" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" (click)="router.navigateByUrl('dashboard')">
+        <i class="fas fa-home logout-icon"></i>
+        Dashboard
+      </a>
+      
+    </div>
+
+    <div class="navbar-end" *ngIf="user">
+      <a class="navbar-item" *ngIf="user.user_type === 'customer'" (click)="showProfile()">
+        <i class="fas fa-user logout-icon"></i>
+        Profile
+      </a>
+      <a class="navbar-item" *ngIf="user.user_type !== 'customer'">
+        <i class="fas fa-user logout-icon"></i>
+        {{user.name}}: {{user.user_type}}
+      </a>
+      
+        
+        <a class="navbar-item" (click)="logout()">
+          <i class="fas fa-sign-out-alt logout-icon"></i>
+          Logout
+        </a>
+        
+      
+    </div>
+  </div>
+</nav>
+<div class="modal" id="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <!-- Any other Bulma elements you want -->
+    <div class="inner-info-card" *ngIf="user">
+      <div class="columns is-vcentered">
+        <div class="column is-5 has-text-centered">
+          <i class="fas fa-user icon"></i>
+          <!-- <figure class="image is-128x128 avatar-fig">
+            <img src="../../../assets/img/avatar.jpg" id="avatar-img" />
+          </figure> -->
+        </div>
+        <div class="column is-7">
+          <div class="user-name mx-3 mt-3">{{ user.name }}</div>
+          <div class="user-email mx-3 mb-2 mt-2">
+            <i class="fas fa-envelope soc-icon"></i> {{ user.email }}
+          </div>
+          <hr />
+          <div class="mt-2 mx-3 bal">
+            <span class="user-mob mr-2" *ngIf="user.user_type === 'customer'">
+              <i class="fas fa-phone-alt soc-icon"></i>
+              {{ user.mobile_number }}</span
+            >
+          </div>
+
+          <div class="edit-btn mt-4 mx-3">
+            <button class="button is-outlined is-black edit">edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    class="modal-close is-large"
+    aria-label="close"
+    (click)="hideProfile()"
+  ></button>
+</div>

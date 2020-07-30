@@ -1,0 +1,101 @@
+<div class="button-row mb-5" style="margin-top: 2px;">
+  <nav class="level is-mobile">
+    <div class="level-left">
+      <div class="level-item mx-2">
+        <p class="btn-text">Add Vehicle</p>
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="router.navigateByUrl('vehicles')">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="level-item">
+        <p class="btn-text">Recharge Now</p>
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="router.navigateByUrl('pay')">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  </nav>
+</div>
+<section class="section" style="padding-top: 5px;">
+    <div class="columns">
+      <div class="column is-4">
+        <p class="title-text">Vehicles</p>
+        <div class="main-outer-cards " *ngFor="let v of vehicles|async">
+          <div class="inner-info-card green" (click)="sendToPayments(v.vehicle_id)">
+            <div class="columns is-vcentered">
+              <div class="column is-7">
+                <div class="road-name mx-3 mt-3">{{v.vehicle_name}}</div>
+                <div class="road-id mx-3 mb-1 mt-1">{{v.vehicle_id}}</div>
+                <div class="road-id mx-3 mb-1 mt-1">{{v.vehicle_type}}</div>
+                <!-- <div class="road-id mx-3 mb-1 mt-1">{{v.mobile_number}}</div> -->
+                <hr id="hr" class="road-hr">
+                <div class="mt-2 mx-3 mb-1"><span class="road-bal">&#8377;</span><span class="road-balance mr-2">{{v.balance}}</span></div>
+              </div>
+              <div class="column is-5 has-text-centered">
+                <!-- <i class="fas fa-car roadgreen-icon"></i> -->
+                <i class="fas fa-truck-pickup roadgreen-icon" *ngIf="v.vehicle_type == 'LCV'"></i>
+                <i class="fas fa-car roadgreen-icon" *ngIf="v.vehicle_type == 'car'"></i>
+                <i class="fas fa-bus-alt roadgreen-icon" *ngIf="v.vehicle_type == 'bus'"></i>
+                <i class="fas fa-truck roadgreen-icon" *ngIf="v.vehicle_type == 'truck'"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column is-4" *ngIf="txns">
+        <p class="title-text">Transactions</p>
+        <div class="main-outer-cards" *ngFor="let txn of txns">
+          <div class="inner-info-card indigo ">
+            <div class="columns is-vcentered">
+              <div class="column is-7" style="padding-bottom: 0px;">
+                <div class="auth-name mx-3 mt-3">{{txn.vehicle_id}}</div>
+                <div class="auth-id mx-3 mb-1 mt-1" style="text-transform: capitalize;" >{{txn.vehicle_type}}</div>
+                <div class="auth-id mx-3 mb-1 mt-1">{{(txn.created_at).split('T')[0]}} {{txn.created_at.split('T')[1].split('.')[0]}}</div>
+                <div class="auth-id mt-2 mx-3 "><span class="">Paid amount : &#8377;</span><span
+                  class="auth-id mr-2">{{txn.amount}}</span>
+              </div>
+                <!-- <hr class="auth-hr" id="hr"> -->
+              </div>
+              <div class="column is-5 has-text-centered">
+                <i class="fas fa-id-card auth-icon"></i>
+              </div>
+            </div>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  More Details
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div>
+                <!-- <div class="card plaza-card px-1 py-1 my-2"> -->
+                  <div class="columns is-vcentered">
+                    <div class=" column is-6">
+                      <div class="plaza-name mx-3 mt-3" style="text-transform: capitalize;"> Authority : {{txn.authority_name}}</div>
+                      <div class="plaza-sub mx-3 mb-1 mt-1" style="text-transform: capitalize;">Road : {{txn.start_end.split('-')[0]}} - {{txn.start_end.split('-')[1]}}</div>
+                      <div class="plaza-sub mx-3 mb-1 mt-1" style="text-transform: capitalize;">plaza : {{txn.plaza_location}}</div>
+                      <!-- <hr id="hr" class="road-hr">
+                      <div class="mt-2 mx-3"><span class="">Payed amount : &#8377;</span><span
+                          class="plaza-name mr-2">{{txn.amount}}</span>
+                      </div> -->
+                    </div>
+                    <div class="column is-5 has-text-centered">
+                      <i class="fas fa-road assigned-road-icon"></i>
+                    </div>
+                    <div>
+                    </div>
+                  </div>
+                <!-- </div> -->
+              </div>
+            </mat-expansion-panel>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="column is-4">
+        <p class="title-text">Payments</p>
+        <div class="list-of-txns" *ngFor="let t of txns;">
+          <pre>{{t|json}}</pre>
+        </div>
+      </div> -->
+
+    </div>
+</section>

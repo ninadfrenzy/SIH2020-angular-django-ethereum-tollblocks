@@ -1,0 +1,76 @@
+.section {
+  height: 100vh;
+  background-image: linear-gradient(
+    135deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+#avatar {
+  height: 120px;
+  width: 260px;
+  margin: auto;
+}
+mat-card-content {
+  margin-top: 10%;
+}
+mat-form-field {
+  min-width: 100%;
+}
+hr {
+  margin-top: 5%;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(0, 0, 173);
+  height: 2px;
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+#loginbtn {
+  height: 50px;
+  width: 100px;
+  font-size: 17px;
+  font-weight: 600;
+  border-width: 2px;
+}
+.active {
+  background-image: linear-gradient(rgba(7, 32, 143, 1), rgba(7, 32, 143, 0.8));
+}
+#signupbutton {
+  height: 50px;
+  color: white;
+}
+#signupbutton:disabled {
+  background-image: linear-gradient(rgba(7, 32, 143, 1), rgba(7, 32, 143, 0.8));
+}
+
+.mat-card {
+  box-shadow: 10px 10px 25px black;
+  border-radius: 0;
+}
+#hugetext {
+  margin-top: 5%;
+  color: white;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 600px) {
+  #hugetext {
+    display: none;
+  }
+  .section {
+    background: none;
+  }
+  #loginbtn {
+    background-color: black;
+  }
+}
+
+.notification {
+  display: none;
+}

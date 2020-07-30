@@ -1,0 +1,31 @@
+.card{
+    box-shadow: 10px 10px 25px black;
+    border-radius: 20px;
+  }
+  hr{
+    background-color: black;
+    margin-bottom: 50px;
+  }
+  .button[disabled]{
+    background-color: rgb(5, 5, 149)e;
+    opacity: 1;
+  }
+  .button{
+    background-color: rgb(5, 5, 149);
+    color: white;
+  }
+  .section{
+    background-image: url('../../../assets/img/rech.svg');
+    background-size: cover;
+  }
+  .notification{
+    display: none;
+  }
+  mat-form-field{
+    width: 60%;
+  }
+  .title-text{
+    font-family: 'product-sans';
+    font-weight: 600;
+    font-size: 25px;
+  }

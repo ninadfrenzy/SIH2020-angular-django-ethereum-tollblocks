@@ -1,0 +1,161 @@
+<app-navbar></app-navbar>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-4">
+        <mat-card>
+          <div class="has-text-centered mb-6">
+            <h1 class="title">Add Rates</h1>
+          </div>
+          <mat-card-content>
+            <form #addvehicleform="ngForm" class="form has-text-centered">
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Rate for Car</mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    name="carrate"
+                    [(ngModel)]="carRate"
+                    #crate="ngModel"
+                    required
+                  />
+                  <mat-error *ngIf="crate.touched && crate.invalid">
+                    Field cannot be empty.
+                  </mat-error>
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Rate for Bus</mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    name="busrate"
+                    [(ngModel)]="busRate"
+                    #brate="ngModel"
+                    required
+                  />
+                  <mat-error *ngIf="brate.touched && brate.invalid">
+                    Field cannot be empty.
+                  </mat-error>
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Rate for Truck</mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    name="truckrate"
+                    [(ngModel)]="truckRate"
+                    #trate="ngModel"
+                    required
+                  />
+                  <mat-error *ngIf="trate.touched && trate.invalid">
+                    Field cannot be empty.
+                  </mat-error>
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Rate for LCV</mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    name="lcvrate"
+                    [(ngModel)]="lcvRate"
+                    #lcrate="ngModel"
+                    required
+                  />
+                  <mat-error *ngIf="lcrate.touched && lcrate.invalid">
+                    Field cannot be empty.
+                  </mat-error>
+                </mat-form-field>
+              </p>
+              <button
+                class="button"
+                id="addvehicle"
+                [disabled]="addvehicleform.invalid"
+                (click)="addNewRates()"
+              >
+                Add
+              </button>
+            </form>
+          </mat-card-content>
+        </mat-card>
+        <div class="notification is-danger mt-2" id="fail">
+          <button class="delete" (click)="removeNotification()"></button>
+           Try again! Error occured.
+        </div>
+        <div class="notification is-success mt-2" id="success">
+          <button class="delete" (click)="removeNotification()"></button>
+          Rates added Successfully.
+        </div>
+      </div>
+      <div class="column is-4 is-offset-2">
+
+        <div class="main-outer-cards" *ngIf="rates">
+          <div class="inner-info-card">
+            <div class="columns is-vcentered">
+              <div class="column is-7">
+                <div class="vehicle-name mx-3 mt-3">Car Rate</div>
+               
+                <hr>
+                <div class="mt-2 mx-3 bal"><span class="vehicle-balance mr-2">{{rates.car_rate}}</span>&#8377;</div>
+              </div>
+              <div class="column is-5 has-text-centered">
+                <i class="fas fa-car icon"></i>
+                <!-- <i class="fas fa-bus-alt icon" *ngIf="v.vehicle_type == 'bus'"></i>
+                <i class="fas fa-truck icon" *ngIf="v.vehicle_type == 'truck'"></i> -->
+              </div>
+            </div>
+          </div>
+          <div class="inner-info-card">
+            <div class="columns is-vcentered">
+              <div class="column is-7">
+                <div class="vehicle-name mx-3 mt-3">Bus Rate</div>
+               
+                <hr>
+                <div class="mt-2 mx-3 bal"><span class="vehicle-balance mr-2">{{rates.bus_rate}}</span>&#8377;</div>
+              </div>
+              <div class="column is-5 has-text-centered">
+                <i class="fas fa-bus-alt icon"></i>
+                <!-- <i class="fas fa-bus-alt icon" *ngIf="v.vehicle_type == 'bus'"></i>
+                <i class="fas fa-truck icon" *ngIf="v.vehicle_type == 'truck'"></i> -->
+              </div>
+            </div>
+          </div>
+          <div class="inner-info-card">
+            <div class="columns is-vcentered">
+              <div class="column is-7">
+                <div class="vehicle-name mx-3 mt-3">Truck Rate</div>
+               
+                <hr>
+                <div class="mt-2 mx-3 bal"><span class="vehicle-balance mr-2">{{rates.truck_rate}}</span>&#8377;</div>
+              </div>
+              <div class="column is-5 has-text-centered">
+                <i class="fas fa-truck icon"></i>
+              </div>
+            </div>
+          </div>
+          <div class="inner-info-card">
+            <div class="columns is-vcentered">
+              <div class="column is-7">
+                <div class="vehicle-name mx-3 mt-3">LCV Rate</div>
+               
+                <hr>
+                <div class="mt-2 mx-3 bal"><span class="vehicle-balance mr-2">{{rates.lcv_rate}}</span>&#8377;</div>
+              </div>
+              <div class="column is-5 has-text-centered">
+                <i class="fas fa-truck-pickup icon"></i>
+                <!-- <i class="fas fa-bus-alt icon" *ngIf="v.vehicle_type == 'bus'"></i>
+                <i class="fas fa-truck icon" *ngIf="v.vehicle_type == 'truck'"></i> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

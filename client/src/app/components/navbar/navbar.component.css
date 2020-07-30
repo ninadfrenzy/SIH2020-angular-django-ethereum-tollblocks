@@ -1,0 +1,117 @@
+nav{
+  background-color: #3f50b5;
+  
+}
+#logo{
+  max-height: 4rem;
+  width: 110px;
+  transform: scale(1);
+  margin-left: 4px;
+
+}
+#navbar-burger{
+  color: white;
+  margin-top:10px;
+}
+.navbar-menu.is-active{
+  background-color: #2d3980;
+}
+.navbar-item{
+  font-family: 'product-sans';
+  font-size: 19px;
+  color: white;
+}
+.navbar-item:hover{
+  background-color: #4d62d8;
+  color: white;
+}
+#logout{
+  padding-top: 0px;
+  padding-bottom: 5px;
+}
+
+.inner-info-card{
+  background: white;
+  background-size: cover;
+  border-radius: 15px;
+  margin: 20px 10px;
+
+
+}
+.user-name{
+  font-size:25px;
+  font-weight: 500;
+  color: black;
+  text-transform: capitalize;
+}
+.avatar-fig{
+  margin: auto;
+
+}
+#profile{
+  border-radius: 50%;
+  height: 90%;
+  width: 85%;
+  padding-top: 0px;
+  padding-bottom: 5px;
+}
+.edit{
+  height: 35px;
+}
+.logout-icon{
+  margin-right: 5px;
+}
+.soc-icon{
+  margin-right:5px;
+}
+#avatar-img{
+  border: 3px solid #11288a;
+  border-radius: 50%;
+  height: 128px;
+  width: 128px;
+}
+
+.modal-content{
+  overflow: hidden;
+  width:500px;
+}
+hr{
+  margin-left:4%;
+  margin-bottom: 10px;
+  margin-top: 2px;
+  height: 3px;
+  border-radius: 20%;
+  width: 15%;
+  background-color: black;
+}
+.user-email{
+  font-size: 15px;
+  font-weight: 400;
+  color:black;
+
+}
+.user-mob{
+  font-size: 15px;
+  font-weight: 300;
+  color: black;
+}
+.bal{
+  color: white;
+}
+.icon{
+  height: auto;
+  font-size: 70px;
+  color: black;
+  border: 3px solid;
+  width: 100px;
+  padding: 12px;
+  border-radius: 50%;
+}
+nav{
+  -webkit-box-shadow: 0px 4px 16px 1px rgba(0,0,0,0.49);
+-moz-box-shadow: 0px 4px 16px 1px rgba(0,0,0,0.49);
+box-shadow: 0px 4px 16px 1px rgba(0,0,0,0.49);
+}
+#dashbtn{
+  height: 100%;
+}

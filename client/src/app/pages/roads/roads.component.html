@@ -1,0 +1,134 @@
+
+<app-navbar></app-navbar>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-4">
+        <mat-card>
+          <div class="has-text-centered mb-6">
+            <h1 class="title">Add Road</h1>
+          </div>
+          <mat-card-content>
+            <form #addroadform="ngForm" class="form has-text-centered">
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Road Start Location</mat-label>
+                  <input
+                    matInput
+                    placeholder="Eg. Pune"
+                    name="startlocation"
+                    [(ngModel)]="startLoc"
+                    #startloc="ngModel"
+                    required
+                  />
+                  <mat-error *ngIf="startloc.touched && startloc.invalid">
+                  Field cannot be empty.
+                  </mat-error>
+
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Road End Location</mat-label>
+                  <input
+                    matInput
+                    placeholder="Eg. Mumbai"
+                    name="endlocation"
+                    [(ngModel)]="endLoc"
+                    #endloc="ngModel"
+                    required
+                  />
+                  <mat-error *ngIf="endloc.touched && endloc.invalid">
+                  Field cannot be empty.
+                  </mat-error>
+
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Contract Amount</mat-label>
+                  <input
+                    type="number"
+                    matInput
+                    placeholder="(in INR)"
+                    name="contractamt"
+                    [(ngModel)]="contractAmount"
+                    #camt="ngModel"
+                    required
+                  />
+                  <mat-error *ngIf="camt.touched && camt.invalid">
+                  Field cannot be empty.
+                  </mat-error>
+
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Contract Duration (optional)</mat-label>
+                  <input
+                    matInput
+                    placeholder="In yy,mm"
+                    name="durationofcntract"
+                    [(ngModel)]="duration"
+                    #dur="ngModel"
+
+                  />
+
+
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Road ID</mat-label>
+                  <input
+                    matInput
+
+                    name="roadid"
+                    [(ngModel)]="roadId"
+
+                    readonly
+                  />
+
+
+                </mat-form-field>
+              </p>
+
+              <button class="button" id="addroad" [disabled]="addroadform.invalid" (click)="addNewRoad()" *ngIf="!showSpinner">Add</button>
+              <div class="has-text-centered" style="margin-left: 45%;">
+                <mat-spinner diameter=30 *ngIf="showSpinner"></mat-spinner>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+        <div class="notification is-danger mt-2" id="fail">
+          <button class="delete" (click)="removeNotification()"></button>
+           Try again! Something is wrong.
+        </div>
+        <div class="notification is-success mt-2" id="success">
+          <button class="delete" (click)="removeNotification()"></button>
+          Added Raod successfully. 
+        </div>
+      </div>
+      <div class="column is-4 is-offset-2">
+
+        <div class="main-outer-cards" *ngFor="let r of roads">
+          <div class="inner-info-card" (click)="assignAuthority(r)">
+            <div class="columns is-vcentered">
+              <div class="column is-7">
+                <div class="road-name mx-3 mt-3">{{r.road_id}}</div>
+                <div class="road-id mx-3 mb-1 mt-1" style="text-transform: capitalize;">{{r.start}} - {{r.end}}</div>
+                <div class="road-id mx-3 mb-1 mt-1">{{r.contract_duration.split(',')[0]}} years {{r.contract_duration.split(',')[1]}} months</div>
+                <hr>
+                <div class="mt-2 mx-3 bal">&#8377;<span class="road-balance mr-2">{{r.contract_amount}}</span></div>
+              </div>
+              <div class="column is-5 has-text-centered">
+                <i class="fas fa-road icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

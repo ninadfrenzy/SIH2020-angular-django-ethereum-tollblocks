@@ -1,0 +1,140 @@
+<!-- <p>pay works!</p> -->
+<div>
+  <app-navbar></app-navbar>
+  <div class="section">
+    <div class="container">
+      <div class="columns is-centered">
+
+        <div class="column is-5">
+          <div class="card">
+            <div class="card-content">
+              <!-- <p class="title">
+                                “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
+                            </p>
+                            <p class="subtitle">
+                                Jeff Atwood
+                            </p> -->
+              <p class="title is-4 has-text-centered" style="font-family: 'product-sans';">Recharge</p>
+              <hr style="background-color: grey;">
+              <form class="form has-text-centered" #rechargeform="ngForm">
+                <div class="columns">
+                  <div class="column is-12 has-text-centered" style="padding-bottom: 0px;">
+                    <p class="">
+                      <mat-form-field appearance="outline" style="width: 60%;">
+                        <mat-label>Amount</mat-label>
+                        <input
+                          type="number"
+                          matInput
+                          placeholder="&#8377; 50"
+                          name="amount"
+                          [(ngModel)]="amount"
+                          #rechargeAmount="ngModel"
+                          OnlyNumber="true"
+                          (keypress)="_keyUp($event)"
+                          required
+                        />
+                        <mat-error
+                          *ngIf="
+                            rechargeAmount.touched && rechargeAmount.invalid
+                          "
+                        >
+                          <mat-error *ngIf="rechargeAmount.errors.required">
+                            Please enter amount.
+                          </mat-error>
+                        </mat-error>
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                      </mat-form-field>
+                    </p>
+                  </div>
+                </div>
+                <div class="columns">
+                  <div class="column is-12 has-text-centered" style="padding-top: 0px; padding-bottom: 0px;">
+                    <mat-form-field appearance="outline" style="width: 60%;">
+                      <mat-label>Select Vehicle</mat-label>
+                      <mat-select
+                        [(ngModel)]="selectedValue"
+                        name="vehicle_id"
+                        required
+                        #vehicle_id="ngModel"
+                      >
+                        <mat-option
+                          *ngFor="let vehicle of vehicles"
+                          [value]="vehicle.vehicle_id"
+                        >
+                          {{ vehicle.vehicle_id }}
+                        </mat-option>
+                        <mat-option value="Other">
+                          Other
+                        </mat-option>
+                      </mat-select>
+                      <mat-error
+                        *ngIf="vehicle_id.touched && vehicle_id.invalid"
+                      >
+                        <mat-error *ngIf="vehicle_id.errors.required">
+                          Please select vehicle.
+                        </mat-error>
+                      </mat-error>
+                    </mat-form-field>
+                    <!-- <div *ngIf="selectedValue!=null"> Selected Vehicle: {{selectedValue}} </div> -->
+                  </div>
+                </div>
+                <div *ngIf="selectedValue == 'Other'" class="columns">
+                  <div class="column is-12 has-text-centered">
+                    <p class="">
+                      <mat-form-field appearance="outline" style="width: 60%;">
+                        <mat-label>Vehicle Number</mat-label>
+                        <input
+                          type="text"
+                          matInput
+                          placeholder="MH 14 EN 0181"
+                          name="vehicleNumber"
+                          pattern="^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$"
+                          [(ngModel)]="vehicleNumber"
+                          #OtherVehicle="ngModel"
+                          OnlyNumber="true"
+                          required
+                        />
+                        <mat-error
+                          *ngIf="OtherVehicle.touched && OtherVehicle.invalid"
+                        >
+                          <mat-error *ngIf="OtherVehicle.errors.required">
+                            Please enter Vehicle Number.
+                          </mat-error>
+                          <mat-error *ngIf="OtherVehicle.errors.pattern">
+                            Invalid vehicle format.
+                          </mat-error>
+                        </mat-error>
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                      </mat-form-field>
+                    </p>
+                  </div>
+                </div>
+                <div class="has-text-centered">
+                  <button
+                    class="button"
+                    id="rechargebutton"
+
+                    type="reset"
+                    [disabled]="rechargeform.invalid"
+                    (click)="rechargeSubmit()"
+                  >
+                    Recharge
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="notification is-danger mt-2" id="fail">
+            <button class="delete" (click)="removeNotification()"></button>
+            Recharge Unsucessfull.
+          </div>
+          <div class="notification is-success mt-2" id="success">
+            <button class="delete" (click)="removeNotification()"></button>
+            Recharge Done.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

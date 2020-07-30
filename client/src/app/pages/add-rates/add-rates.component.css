@@ -1,0 +1,76 @@
+.section{
+    font-family: 'product-sans';
+    background-image: url('../../../assets/img/addveh.svg');
+    background-size: cover;
+  }
+  .title{
+    margin-top: 20px;
+    font-size: 40px;
+    font-weight: 600;
+    font-family: 'product-sans';
+  }
+  #addvehicle{
+    background-color: #11288a;
+    color: white;
+  }
+  #addvehicle[disabled]{
+    background-color: #11288a;
+    opacity:1;
+  }
+  .mat-card{
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px #11288a;
+  }
+  .main-outer-card{
+    background-color: white;
+    padding: 20px;
+  
+  }
+  .inner-info-card{
+    background: #11288a;
+    background-size: cover;
+    border-radius: 15px;
+    margin: 20px 10px;
+    /* box-shadow: 5px 5px 20px black; */
+  
+    /* min-height: 300px; */
+  
+  }
+  .vehicle-name{
+    font-size:25px;
+    font-weight: 500;
+    color: white;
+  }
+  hr{
+    margin-left:6%;
+    margin-bottom: 20px;
+    margin-top: 2px;
+    height: 3px;
+    border-radius: 20%;
+    width: 15%;
+  }
+  .vehicle-id{
+    font-size: 15px;
+    font-weight: 400;
+    color:white;
+  }
+  .vehicle-balance{
+    font-size: 50px;
+    font-weight: 600;
+    color: white;
+  }
+  .bal{
+    color: white;
+  }
+  .icon{
+    height: auto;
+    font-size: 70px;
+    color: white;
+    border: 3px solid;
+    width: 100px;
+    padding: 10px;
+    border-radius: 50%;
+  }
+  .notification{
+    display: none;
+  }

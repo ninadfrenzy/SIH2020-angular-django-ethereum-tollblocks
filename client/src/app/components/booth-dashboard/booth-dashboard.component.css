@@ -1,0 +1,138 @@
+.btn-text{
+    font-family: 'product-sans';
+    font-size: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  .collection-text{
+    font-family: 'product-sans';
+    text-transform: capitalize;
+    font-size: 40px;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  .inner-info-card{
+
+    background-size: cover;
+    border-radius: 8px;
+    margin: 20px 10px;
+    cursor: pointer;
+    transition: background .2s ease-out;
+    transition: transform .2s;
+  }
+  .indigo{
+    border: 3px solid #3949ab;
+  }
+  .indigo:hover{
+    background: #3949ab;
+    transform: scaleX(1.025);
+    color: white;
+  }
+  .road-name{
+    font-size:25px;
+    font-weight: 500;
+    color: rgb(99, 99, 99);
+    text-transform: capitalize;
+  }
+  .road-hr{
+    margin-left:6%;
+    margin-bottom: 50px;
+    margin-top: 2px;
+    height: 3px;
+    border-radius: 25%;
+    width: 15%;
+    background-color: rgb(161, 161, 161);
+  }
+  .road-id{
+    font-size: 15px;
+    font-weight: 400;
+    color:grey;
+  }
+  .road-balance{
+    font-size: 50px;
+    font-weight: 600;
+    color: rgb(99, 99, 99);
+  }
+  .road-bal{
+    color: grey;
+  }
+  .road-icon {
+    height: auto;
+    font-size: 70px;
+    color:white ;
+    background-color: #3949ab;
+    width: 90px;
+    padding: 15px;
+    border-radius: 50%;
+  }
+  .indigo:hover [class^="road"]{
+    color: white;
+  }
+  .indigo:hover [class^="auth"]{
+    color: white;
+  }
+  .indigo:hover hr[class^="road"]{
+    background-color: white;
+  }
+  .indigo:hover .road-icon{
+    color:white;
+    border: 2px solid white;
+    background-color: #3949ab;
+  }
+  .btn-text{
+    font-family: 'product-sans';
+    font-size: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  .collection-text{
+    font-family: 'product-sans';
+    text-transform: capitalize;
+    font-size: 40px;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  .auth-icon {
+    height: auto;
+    font-size: 70px;
+    color:white ;
+    background-color:  #3949ab;
+    /* border: 3px solid; */
+    width: 90px;
+    padding: 15px;
+    border-radius: 50%;
+  }
+  .assigned-road-icon{
+    height: auto;
+    font-size: 70px;
+    color:#3949ab ;
+    background-color:  white;
+    border: 3px solid #3949ab;
+    width: 60px;
+    padding: 15px;
+    border-radius: 50%;
+  }
+  .auth-name{
+    font-size:25px;
+    font-weight: 500;
+    text-transform: capitalize;
+    color:  rgb(99, 99, 99);
+  }
+  .auth-id{
+    font-size: 15px;
+    font-weight: 400;
+    color:grey;
+  }
+  .auth-balance{
+    font-size: 50px;
+    font-weight: 600;
+    color:  rgb(99, 99, 99);;
+  }
+  .title-text{
+    margin-left: 0.75rem;
+    margin-bottom: 2rem;
+    font-family: 'product-sans';
+    font-size: 30px;
+    font-weight: 400;
+
+  }

@@ -1,0 +1,213 @@
+.main-outer-card{
+  background-color: white;
+  padding: 20px;
+
+}
+.title-text{
+  margin-left: 0.75rem;
+  margin-bottom: 2rem;
+  font-family: 'product-sans';
+  font-size: 30px;
+  font-weight: 400;
+}
+
+/* red card css starts*/
+.inner-info-card{
+
+  background-size: cover;
+  border-radius: 8px;
+  margin: 20px 10px;
+  cursor: pointer;
+  transition: background .2s ease-out;
+  transition: transform .2s;
+}
+.red{
+  border: 3px solid tomato;
+}
+.red:hover{
+  background: tomato;
+  transform: scaleX(1.025);
+  color: white;
+}
+.road-name{
+  font-size:25px;
+  font-weight: 500;
+  color: rgb(99, 99, 99);
+  text-transform: capitalize;
+}
+.road-hr{
+  margin-left:6%;
+  margin-bottom: 20px;
+  margin-top: 2px;
+  height: 3px;
+  border-radius: 20%;
+  width: 15%;
+  background-color: rgb(161, 161, 161);
+}
+.road-id{
+  font-size: 15px;
+  font-weight: 400;
+  color:grey;
+}
+.road-balance{
+  font-size: 25px;
+  font-weight: 500;
+  color: rgb(99, 99, 99);
+}
+.road-bal{
+  color: grey;
+}
+.road-icon {
+  height: auto;
+  font-size: 70px;
+  color:white ;
+  background-color: tomato;
+  width: 90px;
+  padding: 10px;
+  border-radius: 50%;
+}
+.red:hover [class^="road"]{
+  color: white;
+}
+.red:hover hr[class^="road"]{
+  background-color: white;
+}
+.red:hover .road-icon{
+  color:white;
+  border: 2px solid white;
+  background-color: tomato;
+}
+/* road card css ends */
+
+
+.green{
+  border: 3px solid #00994f;
+}
+.indigo{
+  border: 3px solid  #3949ab;
+}
+
+
+.indigo:hover{
+  background:  #3949ab;
+  transform: scaleX(1.025);
+  color: white;
+}
+.green:hover{
+  background: #00994f;
+  transform: scaleX(1.025);
+  color: white;
+}
+
+.btn-text{
+  font-family: 'product-sans';
+  font-size: 20px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+
+.auth-name{
+  font-size:25px;
+  font-weight: 500;
+  text-transform: capitalize;
+  color:  rgb(99, 99, 99);
+}
+.auth-id{
+  font-size: 15px;
+  font-weight: 400;
+  color:grey;
+}
+.auth-balance{
+  font-size: 50px;
+  font-weight: 600;
+  color:  rgb(99, 99, 99);;
+}
+.auth-icon {
+  height: auto;
+  font-size: 70px;
+  color:white ;
+  background-color:  #3949ab;
+  /* border: 3px solid; */
+  width: 90px;
+  padding: 15px;
+  border-radius: 50%;
+  margin-top: 4px;
+}
+.auth-hr{
+  margin-left:6%;
+  margin-bottom: 20px;
+  margin-top: 2px;
+  height: 3px;
+  border-radius: 20%;
+  width: 15%;
+  background-color: rgb(161, 161, 161);
+}
+.indigo:hover [class^="auth"]{
+  color: white;
+}
+.indigo:hover hr[class^="auth"]{
+  background-color: white;
+}
+.indigo:hover .auth-icon{
+  color:white;
+  border: 2px solid white;
+  background-color:  #3949ab;
+}
+.roadgreen-icon {
+  height: auto;
+  font-size: 70px;
+  color:white ;
+  background-color:  #00964d;
+  /* border: 3px solid; */
+  width: 90px;
+  padding: 10px;
+  border-radius: 50%;
+}
+.green:hover [class^="road"]{
+  color: white;
+}
+.green:hover hr[class^="road"]{
+  background-color: white;
+}
+.green:hover .roadgreen-icon{
+  color:white;
+  border: 2px solid white;
+  background-color:   #00994f;
+}
+
+.plaza-name{
+  font-size:22px;
+  text-transform:capitalize;
+  font-weight: 500;
+  color: rgb(99, 99, 99);
+}
+.plaza-sub{     
+  font-size: 15px;
+  font-weight: 400;
+  color:grey; 
+}
+.plaza-hr{
+  margin-left:6%;
+  margin-bottom: 50px;
+  margin-top: 2px;
+  height: 3px;
+  border-radius: 25%;
+  width: 15%;
+  background-color: rgb(161, 161, 161);
+}
+.plaza-card{
+    box-shadow: none;
+    border: 2px solid #3949ab;
+    border-radius: 8px;
+}
+.assigned-road-icon{
+  height: auto;
+  font-size: 70px;
+  color:#3949ab ;
+  background-color:  white;
+  border: 2px solid #3949ab;
+  width: 60px;
+  padding: 15px;
+  border-radius: 50%;
+}

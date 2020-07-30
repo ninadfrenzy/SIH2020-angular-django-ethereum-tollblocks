@@ -1,0 +1,122 @@
+<div class="button-row mb-5">
+  <nav class="level is-mobile">
+    <div class="level-left">
+      <div class="level-item">
+        <p class="btn-text">Add Road</p>
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon"
+          (click)="router.navigateByUrl('addroads')">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="level-item">
+        <p class="btn-text">Add Authority</p>
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon"
+          (click)="router.navigateByUrl('addauthority')">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  </nav>
+</div>
+<section class="section" style="margin-top: 10px; padding-top: 5px;">
+  <div class="columns">
+    <!-- <div class="column is-2">
+        <button class="button is-link is-rounded" (click)="router.navigateByUrl('addroads')">Roads</button>
+      </div>
+      <div class="column is-2">
+        <button class="button is-link is-rounded" (click)="router.navigateByUrl('addauthority')">authority</button>
+      </div> -->
+    <div class="column is-4">
+      <p class="title-text">Authorities</p>
+      <div class="main-outer-cards" *ngFor="let a of authorities">
+        <div class="inner-info-card indigo ">
+          <div class="columns is-vcentered">
+            <div class="column is-7">
+              <div class="auth-name mx-3 mt-3">{{a.name}}</div>
+              <div class="auth-id mx-3 mb-1 mt-1">{{a.authority_id}}</div>
+              <div class="auth-id mx-3 mb-1 mt-1">{{a.email}}</div>
+              <!-- <hr class="auth-hr" id="hr"> -->
+            </div>
+            <div class="column is-5 has-text-centered">
+              <i class="fas fa-id-card auth-icon"></i>
+            </div>
+          </div>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Show Assigned Roads
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p *ngIf="authSort[a.authority_id]==undefined">No Road Found</p>
+            <div *ngIf="authSort[a.authority_id]!=undefined">
+              <div class="card plaza-card px-1 py-1 my-2" *ngFor="let r of authSort[a.authority_id]; let z= index;">
+                <div class="columns is-vcentered">
+                  <div class=" column is-6">
+                    <div class="plaza-name mx-3 mt-3">{{r.road_id}}</div>
+                    <div class="plaza-sub mx-3 mb-1 mt-1" style="text-transform: capitalize;">{{r.start}} - {{r.end}}</div>
+                    <div class="plaza-sub mx-3 mb-1 mt-1">{{r.contract_duration.split(',')[0]}} years
+                      {{r.contract_duration.split(',')[1]}} months</div>
+                    <hr id="hr" class="road-hr">
+                    <div class="mt-2 mx-3"><span class="">&#8377;</span><span
+                        class="plaza-name mr-2">{{r.contract_amount}}</span>
+                    </div>
+                  </div>
+                  <div class="column is-5 has-text-centered">
+                    <i class="fas fa-road assigned-road-icon"></i>
+                  </div>
+                  <div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="column is-3">
+      <p class="title-text">Assigned Roads</p>
+      <div class="main-outer-cards " *ngFor="let r of assignedRoads">
+        <div class="inner-info-card green">
+          <div class="columns is-vcentered">
+            <div class="column is-7">
+              <div class="road-name mx-3 mt-3">{{r.road_id}}</div>
+              <div class="road-id mx-3 mb-1 mt-1">{{r.start}} - {{r.end}}</div>
+              <div class="road-id mx-3 mb-1 mt-1">{{r.contract_duration.split(',')[0]}} years
+                {{r.contract_duration.split(',')[1]}} months</div>
+              <div class="road-id mx-3 mb-1 mt-1">Authority Id - {{r.authority_id}}</div>
+              <hr id="hr" class="road-hr">
+              <div class="mt-2 mx-3"><span class="road-bal">&#8377;</span><span
+                  class="road-balance mr-2">{{r.contract_amount}}</span></div>
+            </div>
+            <div class="column is-5 has-text-centered">
+              <i class="fas fa-road roadgreen-icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="column is-4" *ngIf="unassignedRoads.length!=0">
+      <p class="title-text">Unassigned Roads</p>
+      <div class="main-outer-cards" *ngFor="let r of unassignedRoads">
+        <div class="inner-info-card red " (click)="assignAuthority(r)">
+          <div class="columns is-vcentered">
+            <div class="column is-7">
+              <div class="road-name mx-3 mt-3">{{r.road_id}}</div>
+              <div class="road-id mx-3 mb-1 mt-1" style="text-transform: capitalize;">{{r.start}} - {{r.end}}</div>
+              <div class="road-id mx-3 mb-1 mt-1">{{r.contract_duration.split(',')[0]}} years
+                {{r.contract_duration.split(',')[1]}} months</div>
+              <hr class="road-hr" id="hr">
+              <div class="mt-2 mx-3 "><span class="road-bal">&#8377;</span><span
+                  class="road-balance mr-2">{{r.contract_amount}}</span></div>
+            </div>
+            <div class="column is-5  has-text-centered">
+              <i class="fas fa-road road-icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="column is-3"></div> -->
+  </div>
+
+</section>

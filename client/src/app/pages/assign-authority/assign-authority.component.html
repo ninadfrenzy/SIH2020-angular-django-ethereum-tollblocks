@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+<section class="section">
+  <div class="container">  
+    <div class="columns">
+      <div class="column is-4 is-offset-4">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-header-title">
+              Assign Authority
+            </div>
+          </div>
+          <div class="card-content" *ngIf="road">
+            <p id="main-title">{{road.start}} - {{road.end}}</p>
+            <p id="subtitle">{{road.road_id}}</p>
+            <p id="subtitle-2">Contract Amount &#8377; {{road.contract_amount}} </p>
+            <p id="subtitle-2">Contract Duration {{road.contract_duration.split(',')[0]}} years {{road.contract_duration.split(',')[1]}} months </p>
+            <p id="subtitle-2" *ngIf="road.authority_id!=''">Authority Id is {{road.authority_id}} </p>
+            <div *ngIf="road.authority_id==''">
+              <form #assignform = "ngForm" class="form" >
+                <mat-form-field appearance="outline" style="width: 60%;">
+                  <mat-label>Select Authority</mat-label>
+                  <mat-select
+                    [(ngModel)]="authorityId"
+                    name="vehicle_id"
+                    required
+                    #authid="ngModel"
+                  >
+                    <mat-option
+                      *ngFor="let authority of authorities"
+                      [value]="authority.authority_id"
+                    >
+                      {{ authority.authority_id }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="authid.touched && authid.invalid"
+                  >
+                    <mat-error *ngIf="authid.errors.required">
+                      Select authority to assign.
+                    </mat-error>
+                  </mat-error>
+                </mat-form-field>           
+              </form>
+              <button class="button is-link" (click) = "assignNewAuthority()" [disabled]="assignform.invalid">Assign</button>   
+            </div>        
+          </div>
+        </div>
+        <div class="notification is-danger mt-2" id="fail">
+          <button class="delete" (click)="removeNotification()"></button>
+           Try again! Something is wrong.
+        </div>
+        <div class="notification is-success mt-2" id="success">
+          <button class="delete" (click)="removeNotification()"></button>
+          Assined authority successfully. 
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

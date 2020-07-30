@@ -1,0 +1,79 @@
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-5">
+        <p class="title-text">Roads</p>
+        <p class="ml-3"><i class="far fa-hand-point-up mr-2"></i>click on a road to add plaza</p>
+        <div class="main-outer-cards" *ngFor="let r of roads; let i = index">
+          <div class="inner-info-card indigo">
+            <div class="columns is-vcentered" (click)="assignPlaza(r)">
+              <div class="column is-7">
+                <div class="road-name mx-3 mt-3">{{ r.road_id }}</div>
+                <div
+                  class="road-id mx-3 mb-1 mt-1"
+                  style="text-transform: capitalize;"
+                >
+                  {{ r.start }} - {{ r.end }}
+                </div>
+                <div class="road-id mx-3 mb-1 mt-1">
+                  {{ r.contract_duration.split(",")[0] }} years
+                  {{ r.contract_duration.split(",")[1] }} months
+                </div>
+                <div class="road-id mx-3 mb-1 mt-1">
+                  Authority Id - {{ r.authority_id }}
+                </div>
+                <hr id="hr" class="road-hr" />
+                <div class="mt-2 mx-3">
+                  <span class="road-bal">&#8377;</span
+                  ><span class="road-balance mr-2">{{
+                    r.contract_amount
+                  }}</span>
+                </div>
+              </div>
+              <div class="column is-5 has-text-centered">
+                <i class="fas fa-road road-icon"></i>
+              </div>
+            </div>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Show Plazas
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <!-- <p *ngIf="plazaSort[r.road_id]!=undefined">{{plazaSort[r.road_id] |json}}</p> -->
+              <p *ngIf="plazaSort[r.road_id] == undefined">No plaza found</p>
+              <div *ngIf="plazaSort[r.road_id] != undefined">
+                <div
+                  class="card plaza-card px-1 py-1 my-2"
+                  *ngFor="let plaza of plazaSort[r.road_id]; let z = index"
+                >
+                  <div class="columns is-vcentered">
+                    <div class="column is-6">
+                      <div class="plaza-name mx-3 mt-3">{{ plaza.name }}</div>
+                      <div class="plaza-sub mx-3 mb-1 mt-1">
+                        Plaza id - {{ plaza.plaza_id.split("-")[2] }}
+                      </div>
+                      <div class="plaza-sub mx-3 mb-1 mt-1">
+                        Plaza location {{ plaza.location }}
+                      </div>
+                      <!-- <hr class="plaza-hr my-1 mx-1">     -->
+                    </div>
+                    <div class="column is-6 has-text-centered">
+                      <div class="mt-2 mx-3">
+                        <span class="">&#8377;</span
+                        ><span class="plaza-name mr-2">{{
+                          plaza.total_collection
+                        }}</span>
+                      </div>
+                    </div>
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

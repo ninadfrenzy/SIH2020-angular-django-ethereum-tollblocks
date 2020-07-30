@@ -1,0 +1,122 @@
+
+<app-navbar></app-navbar>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-4">
+        <mat-card>
+          <div class="has-text-centered mb-6">
+            <h1 class="title">Add Authority</h1>
+          </div>
+          <mat-card-content>
+            <form #addauthorityform="ngForm" class="form has-text-centered">
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Name</mat-label>
+                  <input
+                    matInput
+                    placeholder="Eg. John Doe"
+                    name="athname"
+                    [(ngModel)]="authorityName"
+                    #auname="ngModel"
+                    required
+                  />
+                  <mat-error *ngIf="auname.touched && auname.invalid">
+                  Field cannot be empty.
+                  </mat-error>
+
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Email</mat-label>
+                  <input
+                    type="email"
+                    matInput
+                    placeholder="Eg. John@doe.com"
+                    name="athemail"
+                    [(ngModel)]="authorityEmail"
+                    #mail="ngModel"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    required
+                  />
+                  <mat-error *ngIf="mail.touched && mail.invalid">
+                    <mat-error *ngIf="mail.errors.required">
+                      Please enter an email.
+                    </mat-error>
+                    <mat-error *ngIf="mail.errors.pattern">
+                      Invalid email format.
+                    </mat-error>
+                  </mat-error>
+
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Password</mat-label>
+                  <input
+                    type="password"
+                    matInput
+                    matTooltipPosition='above'
+                    matTooltip="Must contain minimum 8 characters
+                      Must contain one uppercase letter
+                      Must contain one lowercase letter
+                      Must contain one special character"
+                    name="authoritypwd"
+                    pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+                    [(ngModel)]="password"
+                    #pwd="ngModel"
+                    required
+                  />
+                  <mat-error *ngIf="pwd.touched && pwd.invalid">
+                    <mat-error *ngIf="pwd.errors.required">
+                      Please enter a password.
+                    </mat-error>
+                    <mat-error *ngIf="pwd.errors.pattern">
+                      Invalid password format.
+                    </mat-error>
+                  </mat-error>
+
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Authority ID</mat-label>
+                  <input
+                    matInput
+                    name="athid"
+                    [(ngModel)]="authorityID"
+                    readonly
+                  />
+                </mat-form-field>
+              </p>
+
+              <button class="button" type="reset" id="addauth" [disabled]="addauthorityform.invalid" (click)="addNewAuthority()">Add</button>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="column is-4 is-offset-2">
+
+        <div class="main-outer-cards" *ngFor="let a of authorities">
+          <div class="inner-info-card">
+            <div class="columns is-vcentered">
+              <div class="column is-7">
+                <div class="auth-name mx-3 mt-3">{{a.name}}</div>
+                <div class="auth-id mx-3 mb-1 mt-1">{{a.authority_id}}</div>
+                <div class="auth-id mx-3 mb-1 mt-1">{{a.email}}</div>
+                <hr>
+
+              </div>
+              <div class="column is-5 has-text-centered">
+                <i class="fas fa-id-card icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

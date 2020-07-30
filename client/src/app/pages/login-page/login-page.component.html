@@ -1,0 +1,113 @@
+<section class="section">
+  <!-- 12 - column layout -->
+  <div class="columns">
+    <!-- Left content with logo description and buttons -->
+    <div class="column is-5 content ml-3">
+      <h1 class="mat-display-4" id="hugetext">
+        <img
+          mat-card-image
+          src="../../../assets/img/light-logo.png"
+          id="avatar"
+        />
+      </h1>
+      <p id="intro">
+        Tollblocks is a revolutionary toll collection and processing system,
+        which ensures transparency and provides reliable toll processing and
+        auditing, with the power of blockchain networks.
+      </p>
+
+      <div class="buttons">
+        <button
+          class="button is-outlined is-rounded is-white"
+          id="regbtn"
+          (click)="router.navigateByUrl('signup')"
+        >
+          Register
+        </button>
+        <button class="button is-outlined is-rounded is-white" id="regbtn">
+          About Us
+        </button>
+      </div>
+    </div>
+    <!-- Right content with form -->
+    <div class="column is-4 is-offset-2 formcol">
+      <mat-card>
+        <div class="title has-text-centered">
+          <h1 class="is-size-2" id="logintitle">LOGIN</h1>
+        </div>
+        <hr />
+        <mat-card-content>
+          <form class="form has-text-centered" #loginform="ngForm">
+            <p>
+              <mat-form-field appearance="legacy">
+                <mat-label>Email or Mobile</mat-label>
+                <input
+                  matInput
+                  placeholder="email/mobile"
+                  name="emailormobile"
+                  [(ngModel)]="emailOrMobile"
+                  #emailormob="ngModel"
+                  required
+                />
+                <mat-error *ngIf="emailormob.touched && emailormob.invalid">
+                  Field cannot be empty.
+                </mat-error>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="legacy">
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  name="passwd"
+                  [(ngModel)]="password"
+                  #pwd="ngModel"
+                  required
+                />
+                <mat-error *ngIf="pwd.touched && pwd.invalid">
+                  Field cannot be empty.
+                </mat-error>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="legacy">
+                <mat-label>User Type</mat-label>
+                <mat-select
+                  name="usertype"
+                  [(ngModel)]="userType"
+                  required
+                  #utype="ngModel"
+                >
+                  <mat-option value="customer">Customer</mat-option>
+                  <mat-option value="authority">Authority</mat-option>
+                  <mat-option value="plaza">Plaza</mat-option>
+                  <mat-option value="booth">Booth</mat-option>
+                  <mat-option value="ministry">Ministry</mat-option>
+                </mat-select>
+                <mat-error *ngIf="utype.touched && utype.invalid">
+                  Field cannot be empty.
+                </mat-error>
+              </mat-form-field>
+            </p>
+            <button
+              mat-flat-button
+              id="loginbtn"
+              [class.blued]="loginform.invalid"
+              [class.active]="!loginform.invalid"
+              type="reset"
+              [disabled]="loginform.invalid"
+              (click)="loginSubmit()"
+            >
+              Login
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+      <div class="notification is-danger mt-2" id="fail">
+        <button class="delete" (click)="removeNotification()"></button>
+        login was not successful! Try again.
+      </div>
+    </div>
+  </div>
+</section>

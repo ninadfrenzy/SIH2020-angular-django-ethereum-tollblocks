@@ -1,0 +1,97 @@
+<app-navbar></app-navbar>
+<div class="section">
+    <div class="container">
+      <div class="columns is-centered">
+
+        <div class="column is-5">
+          <div class="card">
+            <div class="card-content">
+              <!-- <p class="title">
+                                “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
+                            </p>
+                            <p class="subtitle">
+                                Jeff Atwood
+                            </p> -->
+              <p class="title is-4 has-text-centered title-text">Collect Toll</p>
+              <hr />
+              <form class="form has-text-centered" #rechargeform="ngForm">
+                <div class="columns">
+                  <div class="column is-12 has-text-centered">
+                    <p class="">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Enter Vehicle ID</mat-label>
+                        <input
+                          type="text"
+                          matInput
+                          placeholder="Eg. MH 12 EN 1234"
+                          name="amount"
+                          [(ngModel)]="vehicleId"
+                          #vid="ngModel"
+                          pattern="^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$"
+                          required
+                        />
+                        <mat-error
+                          *ngIf="
+                            vid.touched && vid.invalid
+                          "
+                        >
+                          <mat-error *ngIf="vid.errors.required">
+                            Please enter amount.
+                          </mat-error>
+                          <mat-error *ngIf="vid.errors.pattern">
+                            Invalid vehicle id format.
+                          </mat-error>
+                        </mat-error>
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                      </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                          <mat-label>Vehicle Type</mat-label>
+                          <mat-select [(ngModel)]="vehicleType" name="vehicletype" #vtype="ngModel" required>
+                            <mat-option value="car">car</mat-option>
+                            <mat-option value="truck">truck</mat-option>
+                            <mat-option value="bus">bus</mat-option>
+                            <mat-option value="LCV">LCV</mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="vtype.touched && vtype.invalid">
+                            cannot be empty
+                          </mat-error>
+        
+                        </mat-form-field>
+        
+        
+                      </p>
+                  </div>
+                </div>
+
+
+                <div class="has-text-centered">
+                  <button
+                    class="button"
+                    id="rechargebutton"
+
+                    type="reset"
+                    [disabled]="rechargeform.invalid"
+                    (click)="collectToll()"
+                  >
+                    Collect Toll
+                  </button>
+                </div>
+              </form>
+
+            </div>
+
+          </div>
+          <div class="notification is-danger mt-2" id="fail">
+            <button class="delete" (click)="removeNotification()"></button>
+             <span id="fail-span"></span>
+          </div>
+          <div class="notification is-success mt-2" id="success">
+            <button class="delete" (click)="removeNotification()"></button>
+             Done.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

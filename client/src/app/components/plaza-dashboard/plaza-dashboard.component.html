@@ -1,0 +1,112 @@
+<div class="button-row mb-5 mx-2 my-2">
+  <nav class="level is-mobile">
+    <div class="level-left">
+      <div class="level-item">
+        <p class="btn-text">Add Booth</p>
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click) = "assignBooth()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="level-item">
+        <p class="btn-text">Add Rates</p>
+        <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click) = "router.navigateByUrl('addrates')">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="level-item" *ngIf="rates">
+        <p class="btn-text-alt">CAR - {{rates.car_rate}}</p>
+        <p class="btn-text-alt">BUS - {{rates.bus_rate}}</p>
+        <p class="btn-text-alt">TRUCK - {{rates.truck_rate}}</p>
+        <p class="btn-text-alt">LCV - {{rates.lcv_rate}}</p>
+      </div>
+    </div>
+    <div class="level-right">
+      <div class="level-item" *ngIf="plaza">
+        <p class="collection-text">Total Collection - &#8377;{{plaza.total_collection}}</p>
+
+      </div>
+    </div>
+  </nav>
+</div>
+<section class="section" style="padding-top: 0px;">
+  <div class="container" *ngIf="plaza">
+    <div class="columns" >
+      <div class="column is-5">
+        <p class="title-text">Booths</p>
+        
+        <div class="main-outer-cards " *ngFor="let booth of booths; let i=index;">
+          <div class="inner-info-card indigo">
+            <div class="columns is-vcentered" >
+              <div class="column is-7">
+                <div class="road-name mx-3 mt-3">{{booth.name}}</div>
+                <div class="road-id mx-3 mb-1 mt-1">{{booth.booth_id.split('-')[3]}}</div>
+                <div class="road-id mx-3 mb-1 mt-1">Plaza Location : {{plaza.plaza_id.split('-')[2]}}</div>
+                <hr id="hr" class="road-hr">
+                <div class="mt-2 mx-3"><span class="road-bal">&#8377;</span><span
+                    class="road-balance mr-2">{{booth.total_collection}}</span></div>
+              </div>
+              <div class="column is-5 has-text-centered">
+                <i class="fas fa-chalkboard-teacher road-icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="column is-6" *ngIf="txns">
+        <p class="title-text">Transactions</p>
+        <div class="list-of-txns" *ngFor="let txn of txns;">
+          <!-- <pre>
+            {{txn|json}}
+          </pre> -->
+          <div class="main-outer-cards" >
+            <div class="inner-info-card indigo ">
+              <div class="columns is-vcentered">
+                <div class="column is-7" style="padding-bottom: 0px;">
+                  <div class="auth-name mx-3 mt-3">{{txn.vehicle_id}}</div>
+                  <div class="auth-id mx-3 mb-1 mt-1" style="text-transform: capitalize;" >{{txn.vehicle_type}}</div>
+                  <div class="auth-id mx-3 mb-1 mt-1">{{txn.created_at.split('T')[0]}} {{txn.created_at.split('T')[1].split('.')[0]}}</div>
+                  <div class="auth-id mt-2 mx-3 "><span class="">Paid amount : &#8377;</span><span
+                    class="auth-id mr-2">{{txn.amount}}</span>
+                </div>
+                  <!-- <hr class="auth-hr" id="hr"> -->
+                </div>
+                <div class="column is-5 has-text-centered">
+                  <i class="fas fa-id-card road-icon"></i>
+                </div>
+              </div>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    More Details
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                  <!-- <div class="card plaza-card px-1 py-1 my-2"> -->
+                    <div class="columns is-vcentered">
+                      <div class=" column is-6">
+                        <div class="plaza-name mx-3 mt-3" style="text-transform: capitalize;"> Authority : {{txn.authority_name}}</div>
+                        <div class="plaza-sub mx-3 mb-1 mt-1" style="text-transform: capitalize;">Road : {{txn.start_end.split('-')[0]}} - {{txn.start_end.split('-')[1]}}</div>
+                        <div class="plaza-sub mx-3 mb-1 mt-1" style="text-transform: capitalize;">plaza : {{txn.plaza_location}}</div>
+                        <!-- <hr id="hr" class="road-hr">
+                        <div class="mt-2 mx-3"><span class="">Payed amount : &#8377;</span><span
+                            class="plaza-name mr-2">{{txn.amount}}</span>
+                        </div> -->
+                      </div>
+                      <div class="column is-5 has-text-centered">
+                        <i class="fas fa-road assigned-road-icon"></i>
+                      </div>
+                      <div>
+                      </div>
+                    </div>
+                  <!-- </div> -->
+                </div>
+              </mat-expansion-panel>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

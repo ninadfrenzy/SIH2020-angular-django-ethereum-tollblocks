@@ -1,0 +1,117 @@
+<app-navbar></app-navbar>
+<section class="section">
+  <div class="container">  
+    <div class="columns">
+      <div class="column is-4 is-offset-4">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-header-title">
+              Add Booth
+            </div>
+          </div>
+          <div class="card-content" *ngIf="plaza">
+            <p id="subtitle">Selected toll-plaza is :</p>
+            <p id="subtitle-2">{{plaza.name}}</p>
+            <p id="subtitle-2">{{plaza.location}} </p>
+            <p id="subtitle-2">{{plaza.plaza_id}}</p>
+
+            <hr>
+            <p id="subtitle">Add Booth for {{plaza.name}}</p>
+            <form #addboothform="ngForm" class="form has-text-centered">
+              <p>
+                <mat-form-field appearance="legacy" style="width: 70%;">
+                  <mat-label>Booth Name</mat-label>
+                  <input
+                    matInput
+                    placeholder="Eg. Booth 1"
+                    name="boothname"
+                    [(ngModel)]="boothName"
+                    #bthname="ngModel"
+                    required
+                  />
+                  <mat-error *ngIf="bthname.touched && bthname.invalid">
+                    Field cannot be empty.
+                  </mat-error>
+                </mat-form-field>
+              </p>
+    
+              <p>
+                <mat-form-field appearance="legacy" style="width: 70%;">
+                  <mat-label>Email</mat-label>
+                  <input
+                    type="email"
+                    matInput
+                    placeholder="Eg. John@doe.com"
+                    name="plazamail"
+                    [(ngModel)]="email"
+                    #mail="ngModel"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    required
+                  />
+                  <mat-error *ngIf="mail.touched && mail.invalid">
+                    <mat-error *ngIf="mail.errors.required">
+                      Please enter an email.
+                    </mat-error>
+                    <mat-error *ngIf="mail.errors.pattern">
+                      Invalid email format.
+                    </mat-error>
+                  </mat-error>
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="legacy" style="width: 70%;">
+                  <mat-label>Password</mat-label>
+                  <input
+                    type="password"
+                    matInput
+                    matTooltipPosition="above"
+                    matTooltip="Must contain minimum 8 characters
+                      Must contain one uppercase letter
+                      Must contain one lowercase letter
+                      Must contain one special character"
+                    name="authoritypwd"
+                    pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+                    [(ngModel)]="password"
+                    #pwd="ngModel"
+                    required
+                  />
+                  <mat-error *ngIf="pwd.touched && pwd.invalid">
+                    <mat-error *ngIf="pwd.errors.required">
+                      Please enter a password.
+                    </mat-error>
+                    <mat-error *ngIf="pwd.errors.pattern">
+                      Invalid password format.
+                    </mat-error>
+                  </mat-error>
+                </mat-form-field>
+              </p>
+    
+              <button
+                class="button is-outlined is-link"
+                type="reset"
+                id="addauth"
+                [disabled]="addboothform.invalid"
+                (click)= "addNewBooth()"
+              >
+                Add Booth
+              </button>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="column is-4">
+        <div class="notification is-danger mt-2" id="fail">
+          <button class="delete" (click)="removeNotification()"></button>
+           Try again! Something is wrong.
+           Your booth email should be unique.
+        </div>
+        <div class="notification is-success mt-2" id="success">
+          <button class="delete" (click)="removeNotification()"></button>
+          Added booth successfully. 
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

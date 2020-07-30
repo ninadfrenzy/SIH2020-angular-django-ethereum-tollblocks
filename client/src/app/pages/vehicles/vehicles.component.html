@@ -1,0 +1,98 @@
+
+<app-navbar></app-navbar>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-4">
+        <mat-card>
+          <div class="has-text-centered mb-6">
+            <h1 class="title">Add Vehicle</h1>
+          </div>
+          <mat-card-content>
+            <form #addvehicleform="ngForm" class="form has-text-centered">
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Vehicle Name</mat-label>
+                  <input
+                    matInput
+                    placeholder="Eg. Maruti Baleno"
+                    name="vehiclename"
+                    [(ngModel)]="vehicleName"
+                    #vname="ngModel"
+                    required
+                  />
+                  <mat-error *ngIf="vname.touched && vname.invalid">
+                  Field cannot be empty.
+                  </mat-error>
+
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Vehicle ID</mat-label>
+                  <input
+                    matInput
+                    placeholder="Eg. MH 13 EN XXXX"
+                    name="vehicleid"
+                    [(ngModel)]="vehicleID"
+                    #vid="ngModel"
+                    pattern="^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$"
+                    required
+                  />
+                  <mat-error *ngIf="vid.touched && vid.invalid">
+                    <mat-error *ngIf="vid.errors.required">
+                      This field cannot be empty.
+                    </mat-error>
+                    <mat-error *ngIf="vid.errors.pattern">
+                      Invalid vehicle format.
+                    </mat-error>
+                  </mat-error>
+
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Vehicle Type</mat-label>
+                  <mat-select [(ngModel)]="vehicleType" name="vehicletype" #vtype="ngModel" required>
+                    <mat-option value="car">car</mat-option>
+                    <mat-option value="truck">truck</mat-option>
+                    <mat-option value="bus">bus</mat-option>
+                    <mat-option value="LCV">LCV</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="vtype.touched && vtype.invalid">
+                    cannot be empty
+                  </mat-error>
+
+                </mat-form-field>
+
+
+              </p>
+              <button class="button" id="addvehicle" [disabled]="addvehicleform.invalid" (click)="addVehicle()">Add</button>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="column is-4 is-offset-2">
+
+        <div class="main-outer-cards" *ngFor="let v of vehicles|async">
+          <div class="inner-info-card">
+            <div class="columns is-vcentered">
+              <div class="column is-7">
+                <div class="vehicle-name mx-3 mt-3">{{v.vehicle_name}}</div>
+                <div class="vehicle-id mx-3 mb-1 mt-1">{{v.vehicle_id}}</div>
+                <hr>
+                <div class="mt-2 mx-3 bal"><span class="vehicle-balance mr-2">{{v.balance}}</span>&#8377;</div>
+              </div>
+              <div class="column is-5 has-text-centered">
+                <i class="fas fa-car icon" *ngIf="v.vehicle_type === 'car'"></i>
+                <i class="fas fa-bus-alt icon" *ngIf="v.vehicle_type == 'bus'"></i>
+                <i class="fas fa-truck icon" *ngIf="v.vehicle_type == 'truck'"></i>
+                <i class="fas fa-truck-pickup icon" *ngIf="v.vehicle_type == 'LCV'"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

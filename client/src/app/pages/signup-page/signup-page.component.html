@@ -1,0 +1,194 @@
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-6">
+        <h1 class="mat-display-4" id="hugetext">
+          Already registered?
+        </h1>
+        <button
+          class="button is-white is-outlined is-rounded"
+          id="loginbtn"
+          (click)="router.navigateByUrl('')"
+        >
+          Login
+        </button>
+        <div class="notification is-danger mt-6" id="fail">
+          <button class="delete" (click)="removeNotification()"></button>
+          <span id="errtext"></span>
+        </div>
+      </div>
+      <div class="column is-6">
+        <mat-card>
+          <mat-card-header>
+            <img
+              mat-card-image
+              src="../../../assets/img/logo.png"
+              id="avatar"
+            />
+          </mat-card-header>
+          <hr />
+          <mat-card-content>
+            <form class="form" #signupform="ngForm">
+              <div class="columns">
+                <div class="column has-text-centered">
+                  <p>
+                    <mat-form-field appearance="outline">
+                      <mat-label>First Name</mat-label>
+                      <input
+                        matInput
+                        placeholder="name"
+                        name="firstname"
+                        [(ngModel)]="firstName"
+                        #fname="ngModel"
+                        required
+                      />
+                      <mat-error *ngIf="fname.touched && fname.invalid">
+                        Please enter a first name!
+                      </mat-error>
+                      <!-- <mat-hint>Hint</mat-hint> -->
+                    </mat-form-field>
+                  </p>
+                </div>
+                <div class="column has-text-centered">
+                  <p>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Last Name</mat-label>
+                      <input
+                        matInput
+                        placeholder="name"
+                        name="lastname"
+                        [(ngModel)]="lastName"
+                        #lname="ngModel"
+                        required
+                      />
+                      <!-- <mat-hint>Hint</mat-hint> -->
+                      <mat-error *ngIf="lname.touched && lname.invalid">
+                        Please enter a last name!
+                      </mat-error>
+                    </mat-form-field>
+                  </p>
+                </div>
+              </div>
+              <div class="columns">
+                <div class="column has-text-centered is-7">
+                  <p>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Email</mat-label>
+                      <input
+                        matInput
+                        placeholder="example@xyz.com"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        name="email"
+                        [(ngModel)]="email"
+                        #mail="ngModel"
+                        required
+                      />
+                      <mat-error *ngIf="mail.touched && mail.invalid">
+                        <mat-error *ngIf="mail.errors.required">
+                          Please enter an email.
+                        </mat-error>
+                        <mat-error *ngIf="mail.errors.pattern">
+                          Invalid email format.
+                        </mat-error>
+                      </mat-error>
+                      <!-- <mat-hint>Hint</mat-hint> -->
+                    </mat-form-field>
+                  </p>
+                </div>
+                <div class="column has-text-centered is-3">
+                  <p>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Mobile</mat-label>
+                      <input
+                        matInput
+                        placeholder="+91 898-XXXX-XXX"
+                        name="mobilenumber"
+                        [(ngModel)]="mobileNumber"
+                        #mob="ngModel"
+                        required
+                      />
+                      <mat-error *ngIf="mob.touched && mob.invalid">
+                        Please enter a mobile number.
+                      </mat-error>
+                    </mat-form-field>
+                  </p>
+                </div>
+              </div>
+              <div class="columns">
+                <div class="column has-text-centered">
+                  <p>
+                    <mat-form-field
+                      appearance="outline"
+                      matTooltipPosition="above"
+                      matTooltip="Must contain minimum 8 characters |
+                        Must contain one uppercase letter |
+                        Must contain one lowercase letter |
+                        Must contain one special character"
+                    >
+                      <mat-label>Password</mat-label>
+                      <input
+                        matInput
+                        type="password"
+                        pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+                        name="password"
+                        [(ngModel)]="password"
+                        #pwd="ngModel"
+                        required
+                      />
+                      <mat-error *ngIf="pwd.touched && pwd.invalid">
+                        <mat-error *ngIf="pwd.errors.required">
+                          Please enter a password.
+                        </mat-error>
+                        <mat-error *ngIf="pwd.errors.pattern">
+                          Invalid password format.
+                        </mat-error>
+                      </mat-error>
+                      <mat-hint class="rules" *ngIf="pwd.update">
+                        <ul></ul>
+                      </mat-hint>
+                    </mat-form-field>
+                  </p>
+                </div>
+                <div class="column has-text-centered">
+                  <p>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Confirm Password</mat-label>
+                      <input
+                        matInput
+                        type="password"
+                        name="confirmpass"
+                        [(ngModel)]="confirmPassword"
+                        #cnfpass="ngModel"
+                        pattern="{{ pwd.value }}"
+                        required
+                      />
+
+                      <mat-error *ngIf="cnfpass.touched && cnfpass.invalid">
+                        <mat-error *ngIf="cnfpass.errors.pattern">
+                          passwords do not match.
+                        </mat-error>
+                      </mat-error>
+                    </mat-form-field>
+                  </p>
+                </div>
+              </div>
+              <div class="has-text-centered">
+                <button
+                  mat-flat-button
+                  id="signupbutton"
+                  [class.greyed]="signupform.invalid"
+                  [class.active]="!signupform.invalid"
+                  type="reset"
+                  [disabled]="signupform.invalid"
+                  (click)="signupSubmit(signupform)"
+                >
+                  Register
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</section>

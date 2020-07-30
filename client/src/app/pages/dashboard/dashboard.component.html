@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+<div class="dashboard-injector" *ngIf="user.user_type === 'customer'">
+  <app-customer-dashboard></app-customer-dashboard>
+</div>
+<div class="dashboard-injector" *ngIf="user.user_type === 'ministry'">
+  <app-ministry-dashboard></app-ministry-dashboard>
+</div>
+<div class="dashboard-injector" *ngIf="user.user_type === 'authority'">
+  <app-authority-dashboard></app-authority-dashboard>
+</div>
+<div class="dashboard-injector" *ngIf="user.user_type === 'plaza'">
+  <app-plaza-dashboard></app-plaza-dashboard>
+</div>
+<div class="dashboard-injector" *ngIf="user.user_type === 'booth'">
+  <app-booth-dashboard></app-booth-dashboard>
+</div>
+
+
