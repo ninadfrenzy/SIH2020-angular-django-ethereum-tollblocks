@@ -6,7 +6,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import traceback
 
-from . import toll_blocks_web3_script
+#from . import toll_blocks_web3_script
+from . import web3_ganache as toll_blocks_web3_script
 from .Module_Auth import is_logged_in
 from .models import UserProfile, Vehicle, Road, Authority, Plaza, Booth, Ministry, Rate, Transaction
 from .seralizers import UserSerializer, VehicleSerializer, RoadSerializer, AuthoritySerializer, PlazaSerializer, BoothSerializer, MinistrySerializer, RateSerializer, TxSerializer
@@ -559,7 +560,10 @@ def get_rates(request):
         #hacky way of getting filtered results, modify this to url params later. 
         if request.method == 'POST':
             print(request.data['plaza_id'])
-            rateobj = Rate.objects.get(plaza_id = request.data['plaza_id'])
+            try:
+                rateobj = Rate.objects.get(plaza_id = request.data['plaza_id'])
+            except(Rate.DoesNotExist):
+                return Response("Error: Rates not set", 403)
             serializer = RateSerializer(rateobj, many=False)
             print(serializer.data)
             return Response(serializer.data)
