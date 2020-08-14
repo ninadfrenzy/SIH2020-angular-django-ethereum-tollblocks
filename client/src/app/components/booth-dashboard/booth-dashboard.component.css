@@ -136,3 +136,9 @@
     font-weight: 400;
 
   }
+  @media only screen and (max-width: 768px) {
+    .collection-text{
+      font-size: 13px;
+      word-wrap: break-word;
+    }
+  }

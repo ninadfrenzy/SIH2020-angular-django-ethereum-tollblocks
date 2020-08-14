@@ -21,16 +21,18 @@
   }
   @media screen and (max-width: 768px) {
     #intro{
-      color:black;
+      color:white;
     }
-    img{
-      display: none;
-    }
+
     #regbtn{
-      background-color: black;
+      background-color: #3f50b5;
     }
     .formcol{
       padding: 0px;
+    }
+    .section{
+      background-color: #3f50b5;
+      padding-top: 0.5rem;
     }
   }
 .container{
@@ -38,7 +40,7 @@
 }
 .formcol{
   margin-top: 5%;
-  
+
 
 }
   .mat-card-header-text{
@@ -48,7 +50,7 @@
     margin-bottom: 30px;
   }
   .mat-card {
-    box-shadow: 5px 5px 60px black; 
+    box-shadow: 5px 5px 60px black;
     border-radius: 20px;
   }
   #regbtn{

@@ -24,10 +24,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
-import {MatExpansionModule} from '@angular/material/expansion'; 
+import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { ChartsModule } from 'ng2-charts';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs'; 
 
 import {MatDialogModule} from '@angular/material/dialog';
 import { RoadsComponent } from './pages/roads/roads.component';
@@ -42,6 +44,7 @@ import { AddBoothComponent } from './pages/add-booth/add-booth.component';
 import { AddRatesComponent } from './pages/add-rates/add-rates.component';
 import { CollectTollComponent } from './pages/collect-toll/collect-toll.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { BlockchainDashboardComponent } from './pages/blockchain-dashboard/blockchain-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +70,7 @@ import { FooterComponent } from './components/footer/footer.component';
     AddRatesComponent,
     CollectTollComponent,
     FooterComponent,
+    BlockchainDashboardComponent,
 
 
   ],
@@ -86,7 +90,10 @@ import { FooterComponent } from './components/footer/footer.component';
     MatToolbarModule,
     MatIconModule,
     MatExpansionModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSlideToggleModule,
+    ChartsModule,
+    MatTabsModule
   ],
   providers: [DjangoHttpService, CookieService, JwtHelperService],
   bootstrap: [AppComponent]

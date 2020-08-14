@@ -1,19 +1,23 @@
 <div class="button-row mb-5 mx-2 my-2">
-  <nav class="level is-mobile">
+  <nav class="level">
     <div class="level-left">
-      <div class="level-item">
-        <p class="btn-text">Add Booth</p>
-        <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click) = "assignBooth()">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-      <div class="level-item">
-        <p class="btn-text">Add Rates</p>
-        <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click) = "router.navigateByUrl('addrates')">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-      <div class="level-item" *ngIf="rates">
+      <nav class="level is-mobile">
+        <div class="level-left">
+          <div class="level-item">
+            <p class="btn-text">Add Booth</p>
+            <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click) = "assignBooth()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div class="level-item">
+            <p class="btn-text">Add Rates</p>
+            <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click) = "router.navigateByUrl('addrates')">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+      </nav>
+      <div class="level-item ratesline" *ngIf="rates">
         <p class="btn-text-alt">CAR - {{rates.car_rate}}</p>
         <p class="btn-text-alt">BUS - {{rates.bus_rate}}</p>
         <p class="btn-text-alt">TRUCK - {{rates.truck_rate}}</p>
@@ -29,11 +33,11 @@
   </nav>
 </div>
 <section class="section" style="padding-top: 0px;">
-  <div class="container" *ngIf="plaza">
-    <div class="columns" >
-      <div class="column is-5">
+  
+    <div class="columns" *ngIf="plaza">
+      <div class="column is-4">
         <p class="title-text">Booths</p>
-        
+
         <div class="main-outer-cards " *ngFor="let booth of booths; let i=index;">
           <div class="inner-info-card indigo">
             <div class="columns is-vcentered" >
@@ -53,7 +57,7 @@
         </div>
 
       </div>
-      <div class="column is-6" *ngIf="txns">
+      <div class="column is-4" *ngIf="txns">
         <p class="title-text">Transactions</p>
         <div class="list-of-txns" *ngFor="let txn of txns;">
           <!-- <pre>
@@ -106,7 +110,34 @@
           </div>
         </div>
       </div>
+      <div class="graphs column is-4">
+        <canvas baseChart
+        [data]="doughnutChartData"
+        [labels]="doughnutChartLabels"
+        [chartType]="doughnutChartType">
+      </canvas>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-title">
+            Number of vehicles today {{numVehicles}}
+          </div>
+        </div>
+        <div class="card-header">
+          <div class="card-header-title">
+            Today's Collection {{todaysCollection}}
+          </div>
+        </div>
+      </div>
+      <canvas baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      
+      [legend]="barChartLegend"
+      [chartType]="barChartType">
+    </canvas>
+      </div>
 
     </div>
-  </div>
+  
 </section>

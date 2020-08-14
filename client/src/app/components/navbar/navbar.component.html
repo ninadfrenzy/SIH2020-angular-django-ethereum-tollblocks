@@ -25,26 +25,23 @@
         <i class="fas fa-home logout-icon"></i>
         Dashboard
       </a>
-      
+
     </div>
 
     <div class="navbar-end" *ngIf="user">
-      <a class="navbar-item" *ngIf="user.user_type === 'customer'" (click)="showProfile()">
-        <i class="fas fa-user logout-icon"></i>
-        Profile
-      </a>
-      <a class="navbar-item" *ngIf="user.user_type !== 'customer'">
+
+      <a class="navbar-item">
         <i class="fas fa-user logout-icon"></i>
         {{user.name}}: {{user.user_type}}
       </a>
-      
-        
+
+
         <a class="navbar-item" (click)="logout()">
           <i class="fas fa-sign-out-alt logout-icon"></i>
           Logout
         </a>
-        
-      
+
+
     </div>
   </div>
 </nav>

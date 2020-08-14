@@ -20,7 +20,7 @@ export class DjangoHttpService {
   token: string;
   head: HttpHeaders;
   authenticatedHead: HttpHeaders;
-  baseURL = '//127.0.0.1:8080/';
+  baseURL = '//192.168.1.100:8080/';
   constructor(private http: HttpClient, private cookie: CookieService) {
     this.head = new HttpHeaders().set('access-control-allow-origin', this.baseURL);
   }
@@ -211,4 +211,11 @@ export class DjangoHttpService {
       );
     }
   }
+
+  getRoadsfromBlockchain(): Observable<Road[]>{
+    console.log("in services")
+    return this.http.get<Road[]>(this.baseURL + "test/api/getchain/")
+  }
+
+  
 }

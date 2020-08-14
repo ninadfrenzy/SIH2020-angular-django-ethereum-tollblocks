@@ -43,5 +43,19 @@ class StatusCodeTest(TestCase):
         response = client.post('/test/api/login/',{"email_mobile": "roadauth11@gmail.com","password": "temp123","user_type":"authority"}, format='json')
         self.assertEqual(response.status_code,401)
 
+    def test_plaza_invalid_signup_statuscode(self):
+        client=APIClient()
+        response = client.post('/test/api/addplaza/',{"name": "plaza", "plaza_id": "PLZ11", "email": "plaza1@gmail.com", "password": "temp123"}, format='json')
+        self.assertEqual(response.status_code,403)
+        response = client.post('/test/api/login/',{"email_mobile": "plaza1@gmail.com","password": "temp123","user_type":"plaza"}, format='json')
+        self.assertEqual(response.status_code,401)
+
+    def test_booth_invalid_signup_statuscode(self):
+        client=APIClient()
+        response = client.post('/test/api/addbooth/',{"name": "booth", "booth_id": "BTH11", "email": "booth1@gmail.com", "password": "temp123"}, format='json')
+        self.assertEqual(response.status_code,403)
+        response = client.post('/test/api/login/',{"email_mobile": "booth1@gmail.com","password": "temp123","user_type":"booth"}, format='json')
+        self.assertEqual(response.status_code,401)
+
     
 

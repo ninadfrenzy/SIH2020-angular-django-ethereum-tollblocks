@@ -116,6 +116,22 @@
         </div>
       </div>
     </div>
+    <div class="column is-4">
+      <div style="display: block">
+        <canvas baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+      <div class="card card-today">
+        <div class="card-content">
+          <p class="today">Today's Collection: {{todayCollection}}</p>
+        </div>
+      </div>
+    </div>
     <!-- <div class="column is-3"></div> -->
   </div>
 

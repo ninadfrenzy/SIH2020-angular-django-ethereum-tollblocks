@@ -16,6 +16,7 @@ export class CollectTollComponent implements OnInit {
   toll: number;
   booth: User;
   rates: Rate;
+  isReturn = false;
   constructor(private httpService: DjangoHttpService, private router: Router) { }
 
   ngOnInit(): void {
@@ -48,7 +49,8 @@ export class CollectTollComponent implements OnInit {
       booth_id: this.booth.booth_id,
       road_id: this.booth.road_id,
       vehicle_id: this.vehicleId,
-      vehicle_type: this.vehicleType
+      vehicle_type: this.vehicleType,
+      is_return: this.isReturn
     };
     this.httpService.collectToll(data).subscribe(
       res => {

@@ -74,6 +74,36 @@
           </div>
         </div>
       </div>
+      <div class="column is-6 is-offset-1">
+        <div>
+          <div>
+            <div style="display: block">
+              <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+              </canvas>
+            </div>
+          </div>
+        </div>
+        <!-- <div>
+          <mat-tab-group (selectedTabChange)="showPlazaChart($event)">
+            <mat-tab *ngFor='let road of roads'  label="{{road.road_id}}"> 
+              <div >
+                <canvas baseChart
+                  [datasets]="barChartDataSngl"
+                  [labels]="barChartLabelsSngl"
+                  [options]="barChartOptionsSngl"
+                  [legend]="barChartLegendSngl"
+                  [chartType]="barChartTypeSngl">
+                </canvas>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div> -->
+      </div>
     </div>
   </div>
 </section>

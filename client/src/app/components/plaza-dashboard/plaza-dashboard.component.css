@@ -129,3 +129,8 @@
     font-size: 30px;
     font-weight: 400;
   }
+  @media only screen and (max-width: 768px) {
+    .collection-text{
+      font-size: 16px;
+    }
+  }

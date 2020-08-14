@@ -7,4 +7,5 @@ export interface Road {
   authority_id: string;
   collected_amount: string;
   is_active: boolean;
+  road_data_from_blockchain:Array<any>;
 }

@@ -11,4 +11,6 @@ export interface CustomTxn{
     authority_name: string;
     start_end: string;
     plaza_location: string;
+    two_way: boolean;
+    is_return: boolean;
 }

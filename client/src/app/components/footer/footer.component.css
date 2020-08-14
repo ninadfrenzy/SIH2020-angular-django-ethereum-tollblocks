@@ -2,8 +2,8 @@ footer{
     /* .set the height of the footer */
     height: 50px;
     /* just setting a color so you can see the footer */
-    background: rgb(204, 204, 204); 
+    background: rgb(204, 204, 204);
   }
 .footer{
-    padding: 2rem 1.5rem 3rem;
+    padding: 0.5rem 3rem;
 }

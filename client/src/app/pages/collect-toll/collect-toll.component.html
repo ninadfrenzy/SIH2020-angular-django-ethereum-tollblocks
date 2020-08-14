@@ -57,10 +57,13 @@
                           <mat-error *ngIf="vtype.touched && vtype.invalid">
                             cannot be empty
                           </mat-error>
-        
+
                         </mat-form-field>
-        
-        
+
+
+                      </p>
+                      <p id="returntoll">
+                        <mat-slide-toggle [(ngModel)]="isReturn" name="return-toggle">Return toll</mat-slide-toggle>
                       </p>
                   </div>
                 </div>

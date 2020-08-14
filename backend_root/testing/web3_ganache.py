@@ -21,16 +21,16 @@ web3 = Web3(Web3.HTTPProvider(ganache_url))
 
 # Wallet address of an account on Ganache.
 # This address might not be same. So check and update the wallet address  
-wallet_address = "0x4AaBD755cD4C9bAb510f42Cb6FE629Eb501Fa8e3"
+wallet_address = "0x248171Ea81F75F27f220019c9C78aF3e0Cd3b629"
 
 # Same for contract address. When you deploy the contract on https://remix.ethereum.org/
 # An address is generated. So update this as well
-contract_address = "0xCB5F0fB8Ad5444cCe2D5087Da7B18F4Ab1e2df19"
+contract_address = "0x686DD1e24e71C81049C8550049242cb794bF3d6C"
 
 if web3.isConnected():
         # load the json data which can be obtained after deploying smart contracts
         abi = json.loads("""
-        [
+[
 	{
 		"constant": false,
 		"inputs": [
@@ -154,7 +154,7 @@ if web3.isConnected():
 else:
 	print("Error in establishing connection to ganache.")
 	traceback.print_exc()
-	return
+
 
 # Add new road to blockchain
 def add_road(road_id, amount):

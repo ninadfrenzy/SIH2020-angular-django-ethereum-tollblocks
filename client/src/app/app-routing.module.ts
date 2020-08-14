@@ -20,6 +20,7 @@ import { PlazaAuthGuardService } from './services/plaza-auth-guard.service';
 import { AddRatesComponent } from './pages/add-rates/add-rates.component';
 import { CollectTollComponent } from './pages/collect-toll/collect-toll.component';
 import { BoothAuthGuardService } from './services/booth-auth-guard.service';
+import { BlockchainDashboardComponent } from './pages/blockchain-dashboard/blockchain-dashboard.component';
 
 
 const routes: Routes = [
@@ -90,6 +91,11 @@ const routes: Routes = [
     path: 'collect-toll',
     component: CollectTollComponent,
     canActivate: [BoothAuthGuardService],
+  },
+  {
+    path: 'block-dash',
+    component: BlockchainDashboardComponent,
+    
   },
 ];
 

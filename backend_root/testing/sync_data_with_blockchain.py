@@ -1,5 +1,9 @@
 import pymysql
-import toll_blocks_web3_script
+import web3_ganache
+# import toll_blocks_web3_script
+import schedule 
+import time 
+
 def get_data_from_db():
 
     # Open database connection
@@ -61,7 +65,23 @@ def send_data_to_blockchain():
         
     else:
         for row in new_data:
-          toll_blocks_web3_script.update_contract(str(row[0]), str(row[1]))  
-    
-# print(get_data_from_db())
-send_data_to_blockchain()
+            # toll_blocks_web3_script.update_contract(str(row[0]), str(row[1]))
+            web3_ganache.update_contract(str(row[0]), str(row[1]))  
+
+
+# Task scheduling 
+# After every 1 min send_data_to_blockchain() is called. 
+schedule.every(1).minutes.do(send_data_to_blockchain) 
+
+# After every hour send_data_to_blockchain() is called. 
+# schedule.every().hour.do(send_data_to_blockchain) 
+
+# Every day at 12am or 00:00 time send_data_to_blockchain() is called. 
+# schedule.every().day.at("00:00").do(send_data_to_blockchain) 
+
+
+# Loop so that the scheduling task keeps on running all time. 
+while True: 
+	# Checks whether a scheduled task is pending to run or not 
+	schedule.run_pending() 
+	time.sleep(1)

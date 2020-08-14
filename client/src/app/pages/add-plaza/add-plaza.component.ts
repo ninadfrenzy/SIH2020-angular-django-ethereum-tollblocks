@@ -16,6 +16,7 @@ export class AddPlazaComponent implements OnInit {
   email: string;
   password: string;
   plazaLocation: string;
+
   /*
         "name": "plaza4",
     "plaza_id": "PLZ04",

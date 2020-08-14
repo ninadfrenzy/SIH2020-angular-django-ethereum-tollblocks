@@ -5,8 +5,10 @@ import hashlib
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import traceback
+from datetime import date
 
-from . import toll_blocks_web3_script
+#from . import toll_blocks_web3_script
+from . import web3_ganache as toll_blocks_web3_script
 from .Module_Auth import is_logged_in
 from .models import UserProfile, Vehicle, Road, Authority, Plaza, Booth, Ministry, Rate, Transaction
 from .seralizers import UserSerializer, VehicleSerializer, RoadSerializer, AuthoritySerializer, PlazaSerializer, BoothSerializer, MinistrySerializer, RateSerializer, TxSerializer
@@ -559,7 +561,10 @@ def get_rates(request):
         #hacky way of getting filtered results, modify this to url params later. 
         if request.method == 'POST':
             print(request.data['plaza_id'])
-            rateobj = Rate.objects.get(plaza_id = request.data['plaza_id'])
+            try:
+                rateobj = Rate.objects.get(plaza_id = request.data['plaza_id'])
+            except(Rate.DoesNotExist):
+                return Response("Error: Rates not set", 403)
             serializer = RateSerializer(rateobj, many=False)
             print(serializer.data)
             return Response(serializer.data)
@@ -581,7 +586,46 @@ def transaction(request):
             plaza_id = request.data['plaza_id']
             amount = request.data['amount']
             road_id = request.data['road_id']
+            is_return  = request.data['is_return']             # is_return is true, if customer wants return ticket
+            is_two_way  = request.data['is_return']            # is_two_way indicates that transaction is two way
 
+            # For return ticket
+            if is_return == True and is_two_way == True:
+                try:
+                    print("finding old data!\n\n")
+                    tx = Transaction.objects.filter(plaza_id=plaza_id, vehicle_id=vehicle_id, is_two_way=True, is_return=True)
+                    
+                    # If no old transaction returned, amount for return ticket is calculated
+                    if len(tx) == 0:
+                        amount = amount * 2 - 10
+                        request.data['amount'] = amount
+                        request.data['is_two_way'] = request.data['is_return']
+
+                    elif len(tx) > 0:
+                        print("old data found!!\n\n")
+                    
+                        # Get date and is_return flag of latest transaction
+                        for i in list(tx):
+                            timestamp = i.created_at
+                            is_return = i.is_return
+
+                        # Check validity of return ticket. Validity of return ticket is till midnight of transaction date
+                        # If valid, set is_return as false and no amount is deducted
+                        if is_return == True and str(timestamp)[:10] == str(date.today()):
+                            list(tx)[len(list(tx))-1].is_return = False
+                            list(tx)[len(list(tx))-1].save()
+                            
+                            tx_sr = TxSerializer(list(tx)[len(list(tx))-1])
+                            return Response(tx_sr.data, 201)
+                        else:
+                            amount = request.data['amount']
+                            pass
+                except:
+                    amount = amount * 2 - 10
+                    request.data['amount'] = amount
+                    pass
+            
+            # For normal transaction
             try:
                 vehicle = Vehicle.objects.get(vehicle_id=vehicle_id)
             except(Vehicle.DoesNotExist):
@@ -620,14 +664,13 @@ def transaction(request):
                 print(serializer.errors)
                 return Response(serializer.errors, 400)
 
-
         else:
             return Response("UserError: You are not allowed for this action.", 403)
     else:
         return Response("RequestError: Please login and try again.", 403)
 
 
-@api_view(['POST'])
+@api_view(['POST','GET'])
 def get_transactions(request):
     # check if the user is logged in or not
     login_info,user_type = is_logged_in(request)
@@ -682,4 +725,3 @@ def get_data_from_blockchain(request):
     except:
         traceback.print_exc()
         return Response("ServerError: Please try again", 500)
-   

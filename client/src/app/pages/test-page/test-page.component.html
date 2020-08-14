@@ -1,127 +1,24 @@
-<p>
-  <mat-toolbar color="primary">
-    <img src="../../../assets/img/light-logo.png" alt="">
-
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>account_circle</mat-icon>
-    </button>
-    <button mat-flat-button color="primary"><mat-icon>exit_to_app</mat-icon>Primary</button>
-    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>exit_to_app</mat-icon>
-    </button> -->
-  </mat-toolbar>
-</p>
-
-
-<!-- bulma navbar -->
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-    </a>
-
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item">
-        Home
-      </a>
-
-      <a class="navbar-item">
-        Documentation
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <button mat-flat-button color="primary" class="logout-btn"><div class="columns is-vcentered">
-            <div class="column is-2"><mat-icon>exit_to_app</mat-icon></div>
-            <div class="column is-8"><span class="btntext">Logout</span></div>
-          </div></button>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-
-<div class="inner-info-card red ">
-  <div class="columns is-vcentered">
-    <div class="column is-7">
-      <div class="road-name mx-3 mt-3">RD-10</div>
-      <div class="road-id mx-3 mb-1 mt-1">Pune - Satara</div>
-      <div class="road-id mx-3 mb-1 mt-1">5 years 6 months</div>
-      <hr class="road-hr" id="hr">
-      <div class="mt-2 mx-3 "><span class="road-bal">&#8377;</span><span class="road-balance mr-2">6700</span></div>
-    </div>
-    <div class="column is-5  has-text-centered">
-      <i class="fas fa-road road-icon"></i>
-    </div>
+<div>
+  <div style="display: block">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+    </canvas>
   </div>
 </div>
 
-<div class="main-outer-cards" >
-  <div class="inner-info-card indigo ">
-    <div class="columns is-vcentered">
-      <div class="column is-7">
-        <div class="auth-name mx-3 mt-3">Auth1</div>
-        <div class="auth-id mx-3 mb-1 mt-1">ATH10</div>
-        <div class="auth-id mx-3 mb-1 mt-1">auth1@gmail.com</div>
-        <hr class="auth-hr" id="hr">
-      </div>
-      <div class="column is-5 has-text-centered">
-        <i class="fas fa-id-card auth-icon"></i>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="main-outer-cards " >
-  <div class="inner-info-card green">
-    <div class="columns is-vcentered">
-      <div class="column is-7">
-        <div class="road-name mx-3 mt-3">RD-1</div>
-        <div class="road-id mx-3 mb-1 mt-1">pune-satara</div>
-        <div class="road-id mx-3 mb-1 mt-1">5 years 6 months</div>
-        <div class="road-id mx-3 mb-1 mt-1">Authority Id - auth1</div>
-        <hr id="hr" class="road-hr">
-        <div class="mt-2 mx-3"><span class="road-bal">&#8377;</span><span class="road-balance mr-2">7899</span></div>
-      </div>
-      <div class="column is-5 has-text-centered">
-        <i class="fas fa-road roadgreen-icon"></i>
-      </div>
+<div>
+  <div>
+    <div style="display: block">
+      <canvas baseChart
+        [data]="doughnutChartData"
+        [labels]="doughnutChartLabels"
+        [chartType]="doughnutChartType">
+      </canvas>
     </div>
   </div>
 </div>

@@ -8,4 +8,6 @@ export interface Transaction{
     vehicle_type: string;
     amount: number;
     created_at: Date;
+    two_way: boolean;
+    is_return: boolean;
 }

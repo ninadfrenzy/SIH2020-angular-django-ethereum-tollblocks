@@ -3,7 +3,10 @@ import { DjangoHttpService } from 'src/app/services/django-http.service';
 import { Road } from 'src/app/models/road';
 import { Router } from '@angular/router';
 import { Plaza } from 'src/app/models/plaza';
-import { MatExpansionModule } from '@angular/material/expansion';
+
+import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
+import { Label } from 'ng2-charts';
+import { throwIfEmpty } from 'rxjs/operators';
 
 @Component({
   selector: 'app-authority-dashboard',
@@ -14,7 +17,48 @@ export class AuthorityDashboardComponent implements OnInit {
   roads: Road[];
   plazas: Plaza[];
   panelOpenState: boolean;
-  plazaSort: Road[] = [];
+  plazaSort: {};
+  collection:number[]=[];
+
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: { xAxes: [{stacked: true}], yAxes: [{stacked: true}] },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      }
+    }
+  };
+  public barChartLabels: Label[] = [];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
+  completed: number[]=[];
+  remaining: number[]=[];
+
+  public barChartData: ChartDataSets[] = [
+    // { data: [65, 59], label: 'completed' },
+    // { data: [28, 48], label: 'remaining' }
+  ];
+
+  public barChartOptionsSngl: ChartOptions = {
+    responsive: true,
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: { xAxes: [{}], yAxes: [{}] },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      }
+    }
+  };
+  public barChartLabelsSngl: Label[] = [];
+  public barChartTypeSngl: ChartType = 'bar';
+  public barChartLegendSngl = true;
+
+  public barChartDataSngl: ChartDataSets[] = [ ];
+
   constructor(private httpService: DjangoHttpService, private router: Router) {
     // close the panel on page load.
     this.panelOpenState = false;
@@ -28,6 +72,11 @@ export class AuthorityDashboardComponent implements OnInit {
         this.httpService.getRoads(data.authority_id).subscribe(res => {
           // get assigned roads
           this.roads = res;
+          this.roads.forEach(road=>{
+            this.barChartLabels.push(road.road_id);
+            this.completed.push(parseInt(road.collected_amount));
+            this.remaining.push(road.contract_amount-parseInt(road.collected_amount));});
+            this.barChartData=[{data:this.completed, label: 'completed'},{data:this.remaining,label:'remaining'}];
         });
         this.httpService.getPlazas('authority_id', data.authority_id).subscribe(res => {
           // get assigned plazas
@@ -57,5 +106,19 @@ export class AuthorityDashboardComponent implements OnInit {
       return r;
     }, Object.create(null));
     console.log(this.plazaSort);
+  }
+  showPlazaChart(even:any){
+    console.log("show function called", this.plazaSort[even['tab'].textLabel]);
+    var road_id=even['tab'].textLabel;
+    // var collection:number[];
+    console.log(this.plazaSort[road_id],road_id);
+    this.plazaSort[road_id].forEach(plaza => {
+      this.barChartLabelsSngl.push(plaza.plaza_name);
+      this.collection.push(plaza.total_collection);
+    });
+    this.barChartDataSngl=[{data:this.collection, label:'collection'}]
+    // for (let plaza of this.plazaSort[road_id]){
+
+    // }
   }
 }
